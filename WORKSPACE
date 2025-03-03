@@ -11,13 +11,25 @@ http_archive(
 
 http_archive(
     name = "io_bazel_rules_scala",
-    sha256 = "141a3919b37c80a846796f792dcf6ea7cd6e7b7ca4297603ca961cd22750c951",
-    strip_prefix = "rules_scala-5.0.0",
-    url = "https://github.com/bazelbuild/rules_scala/archive/refs/tags/v5.0.0.tar.gz",
+    # sha256 = "141a3919b37c80a846796f792dcf6ea7cd6e7b7ca4297603ca961cd22750c951",
+    strip_prefix = "rules_scala-6.6.0",
+    url = "https://github.com/bazelbuild/rules_scala/archive/refs/tags/v6.6.0.tar.gz",
 )
 
+# https://github.com/bazel-contrib/rules_jvm_external?tab=readme-ov-file#with-workspace-file-legacy
+# maven_install(
+#     artifacts =  ["com.github.ghostdogpr:caliban_2.13:2.0.1"],
+#     maven_install_json = "@//:maven_install.json",
+#     repositories = [
+#         "https://maven.google.com",
+#         "https://repo1.maven.org/maven2",
+#     ],
+#     version_conflict_policy = "pinned",
+#     fetch_sources = True,
+# )
+
 load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
-scala_config(scala_version = "2.13.6")
+scala_config(scala_version = "2.13.12")
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "rules_scala_setup", "rules_scala_toolchain_deps_repositories")
 
@@ -35,3 +47,4 @@ scala_register_toolchains()
 load("@io_bazel_rules_scala//testing:scalatest.bzl", "scalatest_repositories", "scalatest_toolchain")
 scalatest_repositories()
 scalatest_toolchain()
+
